@@ -4,14 +4,21 @@ div_resultados.id = "div_resultados";
 async function carregarJson() {
     try {
         // const response = await fetch('https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena/1941');
-        const response = await fetch('https://github.com/professor-salinet/cnx-pa/blob/main/application_data.json');
+        const response = await fetch('https://rodrigo-cnx.github.io/resultados/resultado1.json');
+        // const response = await fetch('./resultado1.json');
             // .then(response => response.json()) // Parse JSON
             // .then(data => alert("data: " + data)) // Work with JSON data
             // .catch(error => alert('Error fetching JSON: ' + error));
 
         if (response.ok) {
             const dados = await response.json();
-            div_resultados.innerText = JSON.stringify(dados);
+            let numero = dados.numero;
+            let dataApuracao = dados.dataApuracao;
+            let dezenasSorteadasOrdemSorteio = dados.dezenasSorteadasOrdemSorteio;
+            let dezena = [];
+            for (i = 0; i < resultado.length; i++) {
+                dezena[i] = dezenasSorteadasOrdemSorteio[i];
+            }
         } else {
             div_resultados.innerText = "deu erro";
         }
@@ -20,7 +27,7 @@ async function carregarJson() {
     }
 }
 
-alert("ok");
+// alert("ok");
 carregarJson();
 // import jsonData from './resultados.json' assert { type: 'json' };
 // div_resultados.innerText = jsonData;
